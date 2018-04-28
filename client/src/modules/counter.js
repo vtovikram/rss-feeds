@@ -36,9 +36,13 @@ export const increment = () => {
     });
     callApi()
      .then(res => {
+       var parser, xmlDoc;
+       parser = new DOMParser();
+       xmlDoc = parser.parseFromString(res.backchannel,"text/xml");
+       var result = xmlDoc.getElementsByTagName("item");
        dispatch({
          type: INCREMENT,
-         response: res.backchannel
+         response: result
        });
      })
      .catch(err => console.log(err));

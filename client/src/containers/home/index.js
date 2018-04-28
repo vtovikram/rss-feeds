@@ -1,25 +1,43 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { increment } from '../../modules/counter';
+import FeedHeadings from '../feedHeading';
 
-const Home = props => (
-  <div>
-    <h1>Home</h1>
-    <p>
-      <button onClick={props.increment} disabled={props.isIncrementing}>
-        Increment
-      </button>
+class Home extends Component  {
 
-    </p>
 
-  </div>
-);
+
+  render() {
+
+    let feedHeading = '';
+
+    if((this.props.backchannel)&& (this.props.backchannel !== '')){
+
+      feedHeading = Object.keys(this.props.backchannel).map((t, i) => {
+          return (<FeedHeadings searchData={this.props.backchannel[t]} key={i} />);
+      });
+
+    }
+
+    return (<div>
+      <h1>Home</h1>
+
+        <button onClick={this.props.increment} disabled={this.props.isIncrementing}>
+          Increment
+        </button>
+        {feedHeading}
+
+    </div>);
+  }
+
+}
 
 const mapStateToProps = state => ({
   count: state.counter.count,
-  isIncrementing: state.counter.isIncrementing
+  isIncrementing: state.counter.isIncrementing,
+  backchannel: state.counter.backchannel
 });
 
 const mapDispatchToProps = dispatch =>
