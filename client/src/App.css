@@ -26,3 +26,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.feedDetails {
+  width: 50%;
+  margin: auto;
+}
+
+img {
+  width: 90%;
+}

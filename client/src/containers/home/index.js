@@ -25,7 +25,7 @@ class Home extends Component  {
       <h1>Home</h1>
 
         <button onClick={this.props.increment} disabled={this.props.isIncrementing}>
-          Increment
+          Backchannel news feed
         </button>
         {feedHeading}
 

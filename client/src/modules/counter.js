@@ -1,11 +1,14 @@
 import { callApi } from '../api';
 export const INCREMENT_REQUESTED = 'counter/INCREMENT_REQUESTED';
 export const INCREMENT = 'counter/INCREMENT';
+export const SET_VIEWING_FEED = 'counter/SET_VIEWING_FEED';
+
 
 const initialState = {
   count: 0,
   backchannel: undefined,
-  isIncrementing: false
+  isIncrementing: false,
+  viewingFeedDetails: undefined
 };
 
 export default (state = initialState, action) => {
@@ -22,6 +25,12 @@ export default (state = initialState, action) => {
         count: state.count + 1,
         backchannel: action.response,
         isIncrementing: !state.isIncrementing
+      };
+
+    case SET_VIEWING_FEED:
+      return {
+        ...state,
+        viewingFeedDetails: action.viewingFeedDetails
       };
 
     default:
@@ -47,5 +56,14 @@ export const increment = () => {
      })
      .catch(err => console.log(err));
 
+  };
+};
+
+export const setViewFeed = (viewingFeedDetails) => {
+  return dispatch => {
+    dispatch({
+      type: SET_VIEWING_FEED,
+      viewingFeedDetails: viewingFeedDetails
+    });
   };
 };
