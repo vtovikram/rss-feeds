@@ -9,8 +9,7 @@ var options = {};
 app.get('/api/hello', (req, res) => {
   options.url = `https://medium.com/feed/backchannel`
   request(options, function(error, response, body) {
-    debugger;
-    res.send({ express: body });
+    res.send({ backchannel: body });
     });
 
 });

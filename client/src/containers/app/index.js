@@ -11,7 +11,7 @@ const App = () => (
   <article className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Lets search for tweets</h1>
+      <h1 className="App-title">Fancy News Feeds</h1>
     </header>
   </article>
     <header>
