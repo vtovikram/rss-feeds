@@ -1,4 +1,4 @@
-# twitter search React Project with Node Express Backend
+# rss feeds React Project with Node Express Backend
 
 > Example on using create-react-app with a Node Express Backend
 
