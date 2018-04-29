@@ -15,7 +15,6 @@ class landingPage extends Component  {
     this.forceUpdate();
   }
 
-
   render() {
 
     let feedHeading = '';
@@ -28,6 +27,19 @@ class landingPage extends Component  {
     if(this.props.bookmarks.length){
       bookmarks =this.props.bookmarks.map((t, i) => {
         return (<FeedHeadings searchData={t} key={i} />);
+      });
+    }
+
+    let medidumMatter = '';
+    if((this.props.medidumMatter)&& (this.props.medidumMatter !== '')){
+      medidumMatter = Object.keys(this.props.medidumMatter).map((key) => {
+        return (<FeedHeadings searchData={this.props.medidumMatter[key]} addToBookmarks={this.addToBookmarks.bind(this)}/>);
+      });
+    }
+    let economist = '';
+    if((this.props.economist)&& (this.props.economist !== '')){
+      economist = Object.keys(this.props.economist).map((key) => {
+        return (<FeedHeadings searchData={this.props.economist[key]} addToBookmarks={this.addToBookmarks.bind(this)}/>);
       });
     }
 
@@ -46,14 +58,15 @@ class landingPage extends Component  {
               {feedHeading}
           </div>
         </Tab>
-        <Tab label="Feeds-2" >
+        <Tab label="Medium Matter Feeds"
+        onActive={this.props.mediumMatter}>
           <div>
-              Feeds2 tab.
+              {medidumMatter}
           </div>
         </Tab>
-        <Tab label="Feeds-3" >
+        <Tab label="The Economist Feeds" onActive={this.props.fetchEconomist}>
           <div>
-              Feeds3 tab.
+              {economist}
           </div>
         </Tab>
       </Tabs>
