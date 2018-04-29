@@ -1,4 +1,5 @@
 import { callApiBackchannel, callApiMatter, callApiEconomist } from '../api';
+import {mockJson} from '../sampleJson/blackchannel';
 export const INCREMENT_REQUESTED = 'actions/INCREMENT_REQUESTED';
 export const INCREMENT = 'actions/INCREMENT';
 export const MEDIUM_MATTER_REQUESTED = 'actions/MEDIUM_MATTER_REQUESTED';
@@ -94,7 +95,17 @@ export const increment = () => {
          response: result
        });
      })
-     .catch(err => console.log(err));
+     .catch(err => {
+
+       var parser, xmlDoc;
+       parser = new DOMParser();
+       xmlDoc = parser.parseFromString(mockJson,"text/xml");
+       var result = xmlDoc.getElementsByTagName("item");
+       dispatch({
+         type: INCREMENT,
+         response: result
+       });
+       console.log(err)});
 
   };
 };
