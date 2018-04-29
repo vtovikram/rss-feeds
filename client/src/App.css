@@ -1,34 +1,22 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 2s linear;
-  height: 4rem;
-  width:  4rem;
+.header__link{
+  text-decoration: none;
+  opacity: 1;
+font-size: 25px;
+letter-spacing: 0px;
+text-transform: uppercase;
+font-weight: 600;
+padding-left: 16px;
+padding-right: 16px;
+color: rgb(255, 255, 255);
 }
-
-.App-header {
-  background-color: #222;
-  color: white;
-  height: 8rem;
+.feeds {
+  width: 70%;
+margin: auto;
 }
-
-.App-title {
-  font-size: 1.5rem;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .feedDetails {
-  width: 50%;
+  padding-top: 2.5rem;
+  width: 70%;
   margin: auto;
 }
 

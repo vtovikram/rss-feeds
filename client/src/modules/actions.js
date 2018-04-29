@@ -1,11 +1,10 @@
 import { callApi } from '../api';
-export const INCREMENT_REQUESTED = 'counter/INCREMENT_REQUESTED';
-export const INCREMENT = 'counter/INCREMENT';
-export const SET_VIEWING_FEED = 'counter/SET_VIEWING_FEED';
+export const INCREMENT_REQUESTED = 'actions/INCREMENT_REQUESTED';
+export const INCREMENT = 'actions/INCREMENT';
+export const SET_VIEWING_FEED = 'actions/SET_VIEWING_FEED';
 
 
 const initialState = {
-  count: 0,
   backchannel: undefined,
   isIncrementing: false,
   viewingFeedDetails: undefined
@@ -22,7 +21,6 @@ export default (state = initialState, action) => {
     case INCREMENT:
       return {
         ...state,
-        count: state.count + 1,
         backchannel: action.response,
         isIncrementing: !state.isIncrementing
       };

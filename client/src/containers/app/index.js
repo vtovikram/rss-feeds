@@ -1,24 +1,21 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import AppBar from 'material-ui/AppBar';
+
+
 import Home from '../home';
 import About from '../about';
 import detailFeed from '../detailFeed';
 
-import logo from '../../logo.svg';
 import '../../App.css';
 
 const App = () => (
   <div>
-  <article className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <h1 className="App-title">Fancy News Feeds</h1>
-    </header>
-  </article>
-    <header>
-      <Link to="/">Home</Link>
-      <Link to="/about-us">About</Link>
-    </header>
+    <AppBar
+    iconElementLeft={<Link class="header__link" to="/">Home</Link>}
+    iconElementRight={<Link class="header__link" to="/about-us">About</Link>}
+    iconClassNameRight="muidocs-icon-navigation-expand-more">
+    </AppBar>
 
     <main>
       <Route exact path="/" component={Home} />
