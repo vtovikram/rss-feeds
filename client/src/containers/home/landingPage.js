@@ -38,8 +38,8 @@ class landingPage extends Component  {
     }
     let economist = '';
     if((this.props.economist)&& (this.props.economist !== '')){
-      economist = Object.keys(this.props.economist).map((key) => {
-        return (<FeedHeadings searchData={this.props.economist[key]} addToBookmarks={this.addToBookmarks.bind(this)}/>);
+      economist = Object.keys(this.props.economist).map((key, index) => {
+        return (<FeedHeadings searchData={this.props.economist[key]} index={index} addToBookmarks={this.addToBookmarks.bind(this)}/>);
       });
     }
 

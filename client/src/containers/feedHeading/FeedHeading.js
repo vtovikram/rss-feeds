@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import {Card, CardHeader} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
+import Snackbar from 'material-ui/Snackbar';
+
 
 import { Link } from 'react-router-dom';
 
@@ -9,6 +11,25 @@ import { Link } from 'react-router-dom';
 
 
 class FeedHeading extends Component  {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+    };
+  }
+
+  handleClick() {
+    this.setState({
+      open: true,
+    });
+  };
+
+  handleRequestClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
 
 
   createMarkup(title) {
@@ -19,6 +40,7 @@ class FeedHeading extends Component  {
     this.props.setViewFeed(this.props.searchData);
   }
   addBookMarks(event) {
+    this.handleClick();
     this.props.addToBookmarks(this.props.searchData);
     event.stopPropagation();
   }
@@ -30,8 +52,7 @@ class FeedHeading extends Component  {
     // const imageSource = getFirstImageForHeading(searchData);
 
     return (
-
-      <Card className="feeds" onClick={this.setRelatedFeed.bind(this)}>
+      <Card key={this.props.index} className="feeds" onClick={this.setRelatedFeed.bind(this)}>
         <Link to="/detailFeed" >
         <CardHeader
           title={title}
@@ -40,10 +61,15 @@ class FeedHeading extends Component  {
         />
         </Link>
         {this.props.addToBookmarks &&
-        <IconButton tooltip="top-center" touch={true} tooltipPosition="top-center" onClick={this.addBookMarks.bind(this)}>
+        <IconButton tooltip="Add Bookmark" touch={true} tooltipPosition="top-center" onClick={this.addBookMarks.bind(this)}>
           <ActionGrade />
         </IconButton>
-      }
+      }<Snackbar
+          open={this.state.open}
+          message="Bookmark Added"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </Card>
     );
   }

@@ -18,7 +18,7 @@ class expandedFeed extends Component  {
 
      return (<div className="feedDetails">
      <h1>{title}</h1>
-       <div style={{"text-align": "justify"}} dangerouslySetInnerHTML={this.createMarkup(content)} />
+       <div style={{"textAlign": "justify"}} dangerouslySetInnerHTML={this.createMarkup(content)} />
        {!this.props.viewingFeedDetails && <div>Go Home</div>}
      </div>);
 
