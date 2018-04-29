@@ -2,12 +2,14 @@ import { callApi } from '../api';
 export const INCREMENT_REQUESTED = 'actions/INCREMENT_REQUESTED';
 export const INCREMENT = 'actions/INCREMENT';
 export const SET_VIEWING_FEED = 'actions/SET_VIEWING_FEED';
+export const ADD_TO_BOOKMARKS = 'actions/ADD_TO_BOOKMARKS'
 
 
 const initialState = {
   backchannel: undefined,
   isIncrementing: false,
-  viewingFeedDetails: undefined
+  viewingFeedDetails: undefined,
+  bookmarks: []
 };
 
 export default (state = initialState, action) => {
@@ -30,6 +32,13 @@ export default (state = initialState, action) => {
         ...state,
         viewingFeedDetails: action.viewingFeedDetails
       };
+    case ADD_TO_BOOKMARKS:
+    const bookmarks = state.bookmarks;
+    bookmarks.push(action.bookmarks);
+    return {
+      ...state,
+      bookmarks: bookmarks
+    };
 
     default:
       return state;
@@ -62,6 +71,15 @@ export const setViewFeed = (viewingFeedDetails) => {
     dispatch({
       type: SET_VIEWING_FEED,
       viewingFeedDetails: viewingFeedDetails
+    });
+  };
+};
+
+export const addToBookmarks = (bookmarks) => {
+  return dispatch => {
+    dispatch({
+      type: ADD_TO_BOOKMARKS,
+      bookmarks: bookmarks
     });
   };
 };

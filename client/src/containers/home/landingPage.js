@@ -5,24 +5,37 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import FeedHeadings from '../feedHeading';
 
 class landingPage extends Component  {
+  constructor(props) {
+    super(props);
+    this.state = {bookmarks: this.props.bookmarks};
+  }
+
+  addToBookmarks(bookmarks) {
+    this.props.addToBookmarks(bookmarks);
+    this.forceUpdate();
+  }
+
 
   render() {
 
     let feedHeading = '';
-
     if((this.props.backchannel)&& (this.props.backchannel !== '')){
-      feedHeading = Object.keys(this.props.backchannel).map((t, i) => {
-        return (<FeedHeadings searchData={this.props.backchannel[t]} key={i} />);
+      feedHeading = Object.keys(this.props.backchannel).map((key) => {
+        return (<FeedHeadings searchData={this.props.backchannel[key]} addToBookmarks={this.addToBookmarks.bind(this)}/>);
+      });
+    }
+    let bookmarks = '';
+    if(this.props.bookmarks.length){
+      bookmarks =this.props.bookmarks.map((t, i) => {
+        return (<FeedHeadings searchData={t} key={i} />);
       });
     }
 
     return (<div className="viewAlldetails">
       <Tabs >
-        <Tab label="Things i want to read" >
+        <Tab label="Things i want to read">
           <div>
-            <p>
-              BOOKMARKS tab.
-            </p>
+            {bookmarks}
           </div>
         </Tab>
         <Tab
@@ -30,23 +43,17 @@ class landingPage extends Component  {
           data-route="/home"
           onActive={this.props.increment}>
           <div>
-            <p>
               {feedHeading}
-            </p>
           </div>
         </Tab>
         <Tab label="Feeds-2" >
           <div>
-            <p>
               Feeds2 tab.
-            </p>
           </div>
         </Tab>
         <Tab label="Feeds-3" >
           <div>
-            <p>
               Feeds3 tab.
-            </p>
           </div>
         </Tab>
       </Tabs>

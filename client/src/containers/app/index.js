@@ -12,9 +12,8 @@ import '../../App.css';
 const App = () => (
   <div>
     <AppBar
-    iconElementLeft={<Link class="header__link" to="/">Home</Link>}
-    iconElementRight={<Link class="header__link" to="/about-us">About</Link>}
-    iconClassNameRight="muidocs-icon-navigation-expand-more">
+    iconElementLeft={<Link className="header__link" to="/">Home</Link>}
+    iconElementRight={<Link className="header__link" to="/about-us">About</Link>}>
     </AppBar>
 
     <main>

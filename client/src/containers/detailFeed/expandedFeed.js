@@ -7,21 +7,18 @@ class expandedFeed extends Component  {
  }
   render() {
 
-    // this.context.router.replace(this.context.router.createPath({
-    //       name: 'editApplication',
-    //       params: { ...this.context.router.params }
-    //     }));
+  //:TODO redirect back to home page when page refresh with in a expanded feed
     let title = '';
-    let title2 = '';
+    let content = '';
     if(this.props.viewingFeedDetails) {
       const searchData = this.props.viewingFeedDetails;
-      title = searchData.getElementsByTagName('content:encoded')[0].outerHTML;
-      title2 = searchData.getElementsByTagName('title')[0].textContent;
+      content = searchData.getElementsByTagName('content:encoded')[0].outerHTML;
+      title = searchData.getElementsByTagName('title')[0].textContent;
     }
 
      return (<div className="feedDetails">
-     <h1>{title2}</h1>
-       <div dangerouslySetInnerHTML={this.createMarkup(title)} />
+     <h1>{title}</h1>
+       <div style={{"text-align": "justify"}} dangerouslySetInnerHTML={this.createMarkup(content)} />
        {!this.props.viewingFeedDetails && <div>Go Home</div>}
      </div>);
 
