@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {Card, CardHeader} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
-import ActionGrade from 'material-ui/svg-icons/action/grade';
 import Snackbar from 'material-ui/Snackbar';
 
 
 import { Link } from 'react-router-dom';
+
+import Bookmark from '../../bookmark.svg';
 
 // import {getFirstImageForHeading} from '../../utils/dataParserUtils';
 
@@ -62,9 +63,10 @@ class FeedHeading extends Component  {
         </Link>
         {this.props.addToBookmarks &&
         <IconButton tooltip="Add Bookmark" touch={true} tooltipPosition="top-center" onClick={this.addBookMarks.bind(this)}>
-          <ActionGrade />
+        <img src={Bookmark} alt="Bookmark"></img>
         </IconButton>
-      }<Snackbar
+      }
+      <Snackbar
           open={this.state.open}
           message="Bookmark Added"
           autoHideDuration={4000}
