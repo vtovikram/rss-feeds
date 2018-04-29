@@ -53,7 +53,7 @@ class landingPage extends Component  {
         <Tab
           label="Backchannel Feeds"
           data-route="/home"
-          onActive={this.props.increment}>
+          onActive={this.props.fetchBackChannel}>
           <div>
               {feedHeading}
           </div>

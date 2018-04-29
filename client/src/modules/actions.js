@@ -2,8 +2,8 @@ import { callApiBackchannel, callApiMatter, callApiEconomist } from '../api';
 import {mockJson} from '../sampleJson/blackchannel';
 import { structureApiResponceForState } from './parcers/apiDetailsParcer';
 
-export const INCREMENT_REQUESTED = 'actions/INCREMENT_REQUESTED';
-export const INCREMENT = 'actions/INCREMENT';
+export const BACKCHANNEL_REQUESTED = 'actions/BACKCHANNEL_REQUESTED';
+export const BACKCHANNEL = 'actions/BACKCHANNEL';
 export const MEDIUM_MATTER_REQUESTED = 'actions/MEDIUM_MATTER_REQUESTED';
 export const MEDIUM_MATTER = 'actions/MEDIUM_MATTER';
 export const FETCH_ECONOMIST = 'actions/FETCH_ECONOMIST';
@@ -26,13 +26,13 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case INCREMENT_REQUESTED:
+    case BACKCHANNEL_REQUESTED:
       return {
         ...state,
         isIncrementing: true
       };
 
-    case INCREMENT:
+    case BACKCHANNEL:
       return {
         ...state,
         backchannel: action.response,
@@ -81,16 +81,16 @@ export default (state = initialState, action) => {
   }
 };
 
-export const increment = () => {
+export const fetchBackChannel = () => {
   return dispatch => {
     dispatch({
-      type: INCREMENT_REQUESTED
+      type: BACKCHANNEL_REQUESTED
     });
     callApiBackchannel()
      .then(res => {
        var result = structureApiResponceForState(res.backchannel);
        dispatch({
-         type: INCREMENT,
+         type: BACKCHANNEL,
          response: result
        });
      })
@@ -98,7 +98,7 @@ export const increment = () => {
        var result = structureApiResponceForState(mockJson);
 
        dispatch({
-         type: INCREMENT,
+         type: BACKCHANNEL,
          response: result
        });
        console.log(err)});

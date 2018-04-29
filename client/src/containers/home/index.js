@@ -2,7 +2,7 @@
 import { push } from 'react-router-redux';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { increment, addToBookmarks, mediumMatter, fetchEconomist } from '../../modules/actions';
+import { fetchBackChannel, addToBookmarks, mediumMatter, fetchEconomist } from '../../modules/actions';
 import landingPage from './landingPage';
 
 const mapStateToProps = state => ({
@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      increment,
+      fetchBackChannel,
       addToBookmarks,
       mediumMatter,
       fetchEconomist,

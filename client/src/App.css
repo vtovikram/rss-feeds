@@ -1,4 +1,6 @@
-
+.viewAlldetails{
+  margin-bottom: 10rem;
+}
 .header__link{
   text-decoration: none;
   opacity: 1;
@@ -11,6 +13,8 @@ padding-right: 16px;
 color: rgb(255, 255, 255);
 }
 .feeds {
+  padding: 3rem;
+  padding-top: 0;
   display: flex;
   width: 70%;
   margin: auto;
@@ -32,4 +36,7 @@ iframe {
 }
 .bookmarkButton {
   margin: -12px !important;
+}
+.reduceImageSize {
+  width:40%;
 }

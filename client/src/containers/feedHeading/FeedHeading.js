@@ -75,7 +75,7 @@ class FeedHeading extends Component  {
 
 
       <CardText>
-      <div style={{"textAlign": "justify"}} dangerouslySetInnerHTML={this.createMarkup(imageSource)} />
+      <div style={{"textAlign": "justify", "alignItems":"center"}} dangerouslySetInnerHTML={this.createMarkup(imageSource)} />
 
       </CardText>
       <Snackbar
