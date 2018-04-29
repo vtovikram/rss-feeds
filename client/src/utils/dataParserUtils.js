@@ -1,7 +1,10 @@
 export const getFirstImageForHeading = (data) =>{
-//   var test = data;
-//   var parser = new DOMParser();
-// var xmlDoc = parser.parseFromString(test,"text/xml");
-// var test2 =  test.getElementsByTagName("content:encoded")[0].childNodes[0].nodeValue;
-// return test2.match(/[a-z]+:\/\/[^ \n]*/)[0].trim();
+  var test = data;
+  var parser = new DOMParser();
+
+var test2 =  test.getElementsByTagName("content:encoded")[0].childNodes[0].nodeValue;
+var test3 = `<div>${test2}</div>`
+var xmlDoc2 = parser.parseFromString(test3,"text/xml");
+return xmlDoc2.getElementsByTagName('img');
+
 }

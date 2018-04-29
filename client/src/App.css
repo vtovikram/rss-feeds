@@ -13,7 +13,7 @@ color: rgb(255, 255, 255);
 .feeds {
   display: flex;
   width: 70%;
-margin: auto;
+  margin: auto;
 }
 .feedDetails {
   padding-top: 2.5rem;
@@ -26,4 +26,10 @@ img {
 }
 iframe {
   width: 100%;
+}
+.header__description {
+  display: flex;
+}
+.bookmarkButton {
+  margin: -12px !important;
 }

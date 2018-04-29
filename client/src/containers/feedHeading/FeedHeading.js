@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardHeader} from 'material-ui/Card';
+import {Card, CardHeader, CardText} from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
 import Snackbar from 'material-ui/Snackbar';
 
@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 import Bookmark from '../../bookmark.svg';
 
-// import {getFirstImageForHeading} from '../../utils/dataParserUtils';
+import {getFirstImageForHeading} from '../../utils/dataParserUtils';
 
 
 class FeedHeading extends Component  {
@@ -33,8 +33,10 @@ class FeedHeading extends Component  {
   };
 
 
-  createMarkup(title) {
-    return {__html: title};
+  createMarkup(images) {
+    if(images.length) {
+      return {__html: images[0].outerHTML};
+    }
   }
 
   setRelatedFeed() {
@@ -44,34 +46,45 @@ class FeedHeading extends Component  {
     this.handleClick();
     this.props.addToBookmarks(this.props.searchData);
     event.stopPropagation();
+    event.preventDefault();
   }
 
   render() {
     const searchData = this.props.searchData;
     const title = searchData.getElementsByTagName('title')[0].textContent;
 
-    // const imageSource = getFirstImageForHeading(searchData);
+    const imageSource = getFirstImageForHeading(searchData);
 
     return (
       <Card key={this.props.index} className="feeds" onClick={this.setRelatedFeed.bind(this)}>
         <Link to="/detailFeed" >
         <CardHeader
-          title={title}
+          title={<div className="header__description">
+          {title}
+          {this.props.addToBookmarks &&
+          <IconButton className="bookmarkButton"style={{"float":"right"}}tooltip="Add Bookmark" touch={true} tooltipPosition="top-center" onClick={this.addBookMarks.bind(this)}>
+          <img src={Bookmark} alt="Bookmark"></img>
+          </IconButton>}
+          </div>
+        }
+          titleStyle={{"fontSize":"20px","display": "flex"}}
           actAsExpander={true}
           showExpandableButton={true}
         />
-        </Link>
-        {this.props.addToBookmarks &&
-        <IconButton tooltip="Add Bookmark" touch={true} tooltipPosition="top-center" onClick={this.addBookMarks.bind(this)}>
-        <img src={Bookmark} alt="Bookmark"></img>
-        </IconButton>
-      }
+
+
+
+      <CardText>
+      <div style={{"textAlign": "justify"}} dangerouslySetInnerHTML={this.createMarkup(imageSource)} />
+
+      </CardText>
       <Snackbar
           open={this.state.open}
           message="Bookmark Added"
           autoHideDuration={4000}
           onRequestClose={this.handleRequestClose}
         />
+        </Link>
       </Card>
     );
   }
