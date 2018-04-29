@@ -1,5 +1,7 @@
 import { callApiBackchannel, callApiMatter, callApiEconomist } from '../api';
 import {mockJson} from '../sampleJson/blackchannel';
+import { structureApiResponceForState } from './parcers/apiDetailsParcer';
+
 export const INCREMENT_REQUESTED = 'actions/INCREMENT_REQUESTED';
 export const INCREMENT = 'actions/INCREMENT';
 export const MEDIUM_MATTER_REQUESTED = 'actions/MEDIUM_MATTER_REQUESTED';
@@ -86,21 +88,15 @@ export const increment = () => {
     });
     callApiBackchannel()
      .then(res => {
-       var parser, xmlDoc;
-       parser = new DOMParser();
-       xmlDoc = parser.parseFromString(res.backchannel,"text/xml");
-       var result = xmlDoc.getElementsByTagName("item");
+       var result = structureApiResponceForState(res.backchannel);
        dispatch({
          type: INCREMENT,
          response: result
        });
      })
      .catch(err => {
+       var result = structureApiResponceForState(mockJson);
 
-       var parser, xmlDoc;
-       parser = new DOMParser();
-       xmlDoc = parser.parseFromString(mockJson,"text/xml");
-       var result = xmlDoc.getElementsByTagName("item");
        dispatch({
          type: INCREMENT,
          response: result
@@ -117,10 +113,8 @@ export const mediumMatter = () => {
     });
     callApiMatter()
      .then(res => {
-       var parser, xmlDoc;
-       parser = new DOMParser();
-       xmlDoc = parser.parseFromString(res.matter,"text/xml");
-       var result = xmlDoc.getElementsByTagName("item");
+       var result = structureApiResponceForState(res.matter);
+
        dispatch({
          type: MEDIUM_MATTER,
          response: result
@@ -137,10 +131,8 @@ export const fetchEconomist = () => {
     });
     callApiEconomist()
      .then(res => {
-       var parser, xmlDoc;
-       parser = new DOMParser();
-       xmlDoc = parser.parseFromString(res.economist,"text/xml");
-       var result = xmlDoc.getElementsByTagName("item");
+       var result = structureApiResponceForState(res.economist);
+
        dispatch({
          type: ECONOMIST_RECEIVED,
          response: result
